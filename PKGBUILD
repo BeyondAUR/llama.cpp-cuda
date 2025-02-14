@@ -3,7 +3,7 @@
 pkgname=llama.cpp-cuda
 _pkgname="${pkgname%-cuda}"
 pkgver=b4713
-pkgrel=1
+pkgrel=2
 pkgdesc="Port of Facebook's LLaMA model in C/C++ (with NVIDIA CUDA optimizations)"
 arch=(x86_64 armv7h aarch64)
 url='https://github.com/ggerganov/llama.cpp'
@@ -24,9 +24,10 @@ makedepends=(
   cmake
   git
 )
+optdepends=(python-pytorch)
 provides=(${_pkgname})
 conflicts=(${_pkgname} libggml)
-options=(lto)
+options+=(lto)
 source=(
   "git+${url}#tag=${pkgver}"
   "git+https://github.com/nomic-ai/kompute.git"
