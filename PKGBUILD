@@ -4,7 +4,7 @@
 
 pkgname=llama.cpp-cuda
 _pkgname=${pkgname%%-cuda}
-pkgver=b9047 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
+pkgver=b9048 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
 pkgrel=1
 pkgdesc="Port of Facebook's LLaMA model in C/C++ (with NVIDIA CUDA optimizations)"
 arch=(x86_64 armv7h aarch64)
@@ -21,7 +21,6 @@ depends=(
 makedepends=(
   cmake
   cudnn
-  gcc15
   git
   shaderc
   ninja
@@ -43,7 +42,7 @@ source=(
   llama.cpp.conf
   llama.cpp.service
 )
-sha256sums=('bc9756ab48873926a7f3068090acfbe0a41cadb92dac43df60d548378b57c38b'
+sha256sums=('488bbc4754c262e7c66da72585919bdaa7600456726386455fd4656b15d8257f'
             '53fa70cfe40cb8a3ca432590e4f76561df0f129a31b121c9b4b34af0da7c4d87'
             '0377d08a07bda056785981d3352ccd2dbc0387c4836f91fb73e6b790d836620d')
 
@@ -54,18 +53,12 @@ build() {
   if [[ -z "${NVCC_CCBIN}" ]]; then
     source /etc/profile
   fi
-  if ! type -P nvcc &>/dev/null && [[ -d /opt/cuda/bin ]]; then
-    export PATH="/opt/cuda/bin:$PATH"
-  fi
-  # Since CUDA doesn't yet support gcc16, override the compiler to gcc15
-  local _nvcc_host_cxx="${CUDAHOSTCXX:-/usr/bin/g++-15}"
   local _cmake_options=(
     -G Ninja
     -B build
     -S "${_pkgname}"
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DCMAKE_CUDA_HOST_COMPILER="${_nvcc_host_cxx}"
     -DBUILD_SHARED_LIBS=ON
     -DLLAMA_BUILD_TESTS=OFF
     -DLLAMA_USE_SYSTEM_GGML=OFF
