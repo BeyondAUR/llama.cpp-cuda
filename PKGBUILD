@@ -4,7 +4,7 @@
 
 pkgname=llama.cpp-cuda
 _pkgname=${pkgname%%-cuda}
-pkgver=b9158 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
+pkgver=b9159 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
 pkgrel=1
 pkgdesc="Port of Facebook's LLaMA model in C/C++ (with NVIDIA CUDA optimizations)"
 arch=(x86_64 armv7h aarch64)
@@ -43,7 +43,7 @@ source=(
   llama.cpp.conf
   llama.cpp.service
 )
-sha256sums=('65300b73c4f461ec216cab87bf6f0e6af8e6348646fb7febb701100b4893fd31'
+sha256sums=('c085b13fa80ded21fdcd9150a1617a9784466f71c6f48dbcaa6df6f9fc90d26a'
             '53fa70cfe40cb8a3ca432590e4f76561df0f129a31b121c9b4b34af0da7c4d87'
             '0377d08a07bda056785981d3352ccd2dbc0387c4836f91fb73e6b790d836620d')
 
