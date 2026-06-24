@@ -1,6 +1,6 @@
 pkgbase = llama.cpp-cuda
 	pkgdesc = Port of Facebook's LLaMA model in C/C++ (with NVIDIA CUDA optimizations)
-	pkgver = b9777
+	pkgver = b9780
 	pkgrel = 1
 	url = https://github.com/ggml-org/llama.cpp
 	arch = x86_64
@@ -33,10 +33,10 @@ pkgbase = llama.cpp-cuda
 	options = lto
 	options = !debug
 	backup = etc/conf.d/llama.cpp
-	source = llama.cpp-cuda-b9777.tar.gz::https://github.com/ggml-org/llama.cpp/archive/refs/tags/b9777.tar.gz
+	source = llama.cpp-cuda-b9780.tar.gz::https://github.com/ggml-org/llama.cpp/archive/refs/tags/b9780.tar.gz
 	source = llama.cpp.conf
 	source = llama.cpp.service
-	sha256sums = 9382665f17338ee488392b702ce8d32907edb24a9c6e599a6031b697f61ef90b
+	sha256sums = 02a9cb3d5e84f11ea83fff09cfcf31a96cffcabda83000908c45723b41d288d0
 	sha256sums = 53fa70cfe40cb8a3ca432590e4f76561df0f129a31b121c9b4b34af0da7c4d87
 	sha256sums = 0377d08a07bda056785981d3352ccd2dbc0387c4836f91fb73e6b790d836620d
 
