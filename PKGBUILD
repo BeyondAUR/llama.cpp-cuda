@@ -38,15 +38,10 @@ optdepends=(
 provides=(${_pkgname})
 conflicts=(${_pkgname} libggml ggml)
 options=(lto !debug)
-backup=("etc/conf.d/llama.cpp")
 source=(
   "${pkgname}-${pkgver}.tar.gz::https://github.com/ggml-org/llama.cpp/archive/refs/tags/${pkgver}.tar.gz"
-  llama.cpp.conf
-  llama.cpp.service
 )
-sha256sums=('6ebb3afc8afec3774e26d19348948e358fb2215bc1e9dde4fa971612ed6c4bf5'
-            '53fa70cfe40cb8a3ca432590e4f76561df0f129a31b121c9b4b34af0da7c4d87'
-            '0377d08a07bda056785981d3352ccd2dbc0387c4836f91fb73e6b790d836620d')
+sha256sums=('6ebb3afc8afec3774e26d19348948e358fb2215bc1e9dde4fa971612ed6c4bf5')
 
 prepare() {
   ln -sf "${_pkgname}-${pkgver}" llama.cpp
@@ -103,8 +98,6 @@ package() {
   DESTDIR="${pkgdir}" cmake --install build
 
   install -Dm644 "${_pkgname}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-  install -Dm644 "llama.cpp.conf" "${pkgdir}/etc/conf.d/llama.cpp"
-  install -Dm644 "llama.cpp.service" "${pkgdir}/usr/lib/systemd/system/llama.cpp.service"
 }
 # vim:set ts=2 sw=2 et:
 
