@@ -5,7 +5,7 @@
 pkgname=llama.cpp-cuda
 _pkgname=${pkgname%%-cuda}
 pkgver=b10075 # renovate: datasource=github-releases depName=ggml-org/llama.cpp
-pkgrel=1
+pkgrel=2
 pkgdesc="Port of Facebook's LLaMA model in C/C++ (with NVIDIA CUDA optimizations)"
 arch=(x86_64 armv7h aarch64)
 url='https://github.com/ggml-org/llama.cpp'
@@ -73,18 +73,12 @@ build() {
     -DLLAMA_BUILD_NUMBER="${pkgver#b}"
     -Wno-dev
   )
-  if [ -n "$CI" ] && [ "$CI" != 0 ]; then
-    echo "CI = $CI detected, building universal package"
-    _cmake_options+=(
-      -DGGML_BACKEND_DL=ON
-      -DGGML_CPU_ALL_VARIANTS=ON
-      -DGGML_NATIVE=OFF
-    )
-  else
-    _cmake_options+=(
-      -DGGML_NATIVE=ON
-    )
-  fi
+  
+  _cmake_options+=(
+    -DGGML_BACKEND_DL=ON
+    -DGGML_CPU_ALL_VARIANTS=ON
+    -DGGML_NATIVE=OFF
+  )
   # Allow user-specified additional flags
   if [[ -n "$LLAMA_BUILD_EXTRA_ARGS" ]]; then
     echo "Applied custom CMake build args: $LLAMA_BUILD_EXTRA_ARGS"
